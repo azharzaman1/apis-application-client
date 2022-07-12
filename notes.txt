@@ -1,10 +1,13 @@
 Additions
-Add loaders[Skeletons]
+Add loaders[Skeletons] - [DONE]
 
 Improvements
 loose match search query - [DONE]
 add ui components - [DONE]
 add search params - [DONE]
-improve search input
+improve search input - [OK]
 
 Fixes
+
+Checks
+Warnings and errors fixes - [CHECKED]

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 import Container from "../../../components/Generic/Layout/Container";
 import axios from "../../../api/axios";
@@ -8,6 +9,10 @@ import { useSelector } from "react-redux";
 import Heading from "../../../components/Generic/Heading";
 
 const APIs = () => {
+  useEffect(() => {
+    document.title = "APIs - API Archive ";
+  }, []);
+
   const query = useSelector((state) => state.appStore.query);
   const [page, setPage] = useLocalStorage("api-application-apis-page", 1);
   const [entriesPerPage, setEntriesPerPage] = useLocalStorage(
@@ -15,6 +20,7 @@ const APIs = () => {
     15
   );
 
+  // react-query - fetches apis from server [with pagination]
   const {
     data: apis,
     error,
@@ -30,6 +36,14 @@ const APIs = () => {
       return await axios.get(
         `/apis?query=${query}&page=${page}&limit=${entriesPerPage}`
       );
+    },
+    {
+      onSuccess: (res) => {
+        console.log("APIs fetch response [with pagination]", res);
+      },
+      onError: (err) => {
+        console.log(err.message);
+      },
     }
   );
 
@@ -41,10 +55,6 @@ const APIs = () => {
     setEntriesPerPage(parseInt(event.target.value, 10));
     setPage(1);
   };
-
-  if (loadingAPIs) {
-    return <div>Loading ....</div>;
-  }
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -59,8 +69,8 @@ const APIs = () => {
               <Heading>APIs Archive</Heading>
             </div>
 
-            {/* Only display Pagination when APIs found -atleast one */}
-            {apis.data.data?.length > 0 && (
+            {/* Only display Pagination when APIs found - atleast one */}
+            {apis?.data?.data?.length > 0 && (
               <div className="apis-page-header-right">
                 <Pagination
                   totalEntries={apis.data.totalDocs}
@@ -74,17 +84,19 @@ const APIs = () => {
           </div>
 
           {/* APIs found - atleast one */}
-          {apis.data.data?.length > 0 && (
-            <div className="apis-list mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {apis.data?.data?.map((api) => (
-                <APICard key={api._id} data={api} />
-              ))}
-            </div>
-          )}
+          <div className="apis-list mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {loadingAPIs
+              ? [1, 2, 3, 4, 5, 6, 7, 8].map((skeleton) => (
+                  <APICard key={skeleton} loading={true} />
+                ))
+              : apis?.data?.data?.map((api) => (
+                  <APICard key={api._id} data={api} />
+                ))}
+          </div>
 
           {/* APIs not found - not a single one */}
-          {!apis.data.data?.length && (
-            <div className="mt-8">
+          {!apis?.data?.data?.length && (
+            <div>
               {query ? `Nothing found for "${query}"` : "Nothing found"}
             </div>
           )}

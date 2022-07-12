@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# API Archive Application - [Frontend]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Backend Link**: [BACK_END_URL](BACKEND_END_URL)
 
-## Available Scripts
+#### Technologies used
 
-In the project directory, you can run:
+**Frontend**
 
-### `npm start`
+- ReactJs
+- Redux - (used intentionally - Context was enough)
+- Tailwind CSS
+- Material UI(Mui)
+- CSS3
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Backend**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- NodeJs
+- ExpressJs
+- MongoDB
+- mongoose
 
-### `npm test`
+**HTTP(S) - Async**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React Query
+- Axios
 
-### `npm run build`
+## Application Manual
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This is a must read manual for this Application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Project setup
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To setup this application on locally on your machine, create an empty directory inside your machine and navigate to it.
+Now its time to clone frontend and backend to your machine with following commands;
 
-### `npm run eject`
+Clone Frontend:
+`git clone FRONT_END_URL client`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Similarly, clone Backend:
+`git clone BACK_END_URL server`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Setup Frontend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Navigate to cloned frontend directory by running;
+`cd client`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+And install dependencies,
+`npm i` or `npm install`
 
-## Learn More
+And thats it for the frontend, for now.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Setup Backend
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+First of all, navigate 1-step back from Frontend directory;
+`cd ..`
 
-### Code Splitting
+And, navigate to cloned backend directory by running
+`cd server`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+And install dependencies;
+`npm i` or `npm install`
 
-### Analyzing the Bundle Size
+Well, thats not it for the backend. Here are few things to be noted carefully.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**NOTE:** If you are running your MongoDB on local machine with default connection URI, which is;
+`mongodb://127.0.0.1:27017`
 
-### Making a Progressive Web App
+Then you are good to go.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Otherwise**: Please update MongoDB instance **URI** inside `.env` file at root of `server` directory as;
+`LOCAL_MONGO_URL=CUSTOM_MONGO_CONNECTION_URI`
 
-### Advanced Configuration
+**In case**: You are going to test application with cloud MongoDB database, like atlas, again update `LOCAL_MONGO_URL=CLOUD_MONGO_CONNECTION_URI`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Please start server by running;
+`npm run dev`
 
-### Deployment
+Now server must be running at [localhost:3500](http://localhost:3500)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+If we did everything fine, we must be able to see `Hurrah! Server Up and Running` message by visiting [localhost:3500](http://localhost:3500).
 
-### `npm run build` fails to minify
+##### Copy Data From API Endpoint to MongoDB
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is step must be followed because I have added few extra fields while saving data to MongoDB to make application even awesome.
+
+I have created an endpoint, which automatically fetches data from API endpoint and stores it to MongoDB.
+Simply make a **`GET`** call to following endpoint through any client like **Postman** or **Thunder Client** (VSCode extension).
+
+`localhost:3500/api/v1/apis/sync`
+
+If you do not have any of these clients, please skip this step for now. I have put little button on the Fronted, which will do this for you.
+
+#### Run Frontend
+
+After making sure backend is running at `port=3500`, please start frontend, by navigating to frontend root directory and running;
+`npm run dev` or `npm start`
+
+Frontend should be up and running at;
+`localhost:3000`
+
+##### Copy Data From API Endpoint to MongoDB [if haven't already]
+
+Please store API data to MongoDB by hitting **`Sync Data`** Button, and you should get **`Data fetched and synced in MongoDB`** message back with **`201`** status code.
+
+If that is the case, thats it for the setup, and if any error occurs please let me know.
+
+### ALL YOURS
+
+Thanks and Regards
+**Azhar Zaman**

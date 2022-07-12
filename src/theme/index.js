@@ -12,6 +12,13 @@ export const theme = createTheme({
     },
   },
   components: {
+    MuiSkeleton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 2,
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         disableElevation: true,
