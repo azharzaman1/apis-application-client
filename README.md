@@ -1,6 +1,6 @@
 # API Archive Application - [Frontend]
 
-**Backend Link**: [BACK_END_URL](BACKEND_END_URL)
+**Backend Link**: [https://github.com/azharzaman1/apis-application-server.git](https://github.com/azharzaman1/apis-application-server.git)
 
 #### Technologies used
 
@@ -34,10 +34,10 @@ To setup this application on locally on your machine, create an empty directory 
 Now its time to clone frontend and backend to your machine with following commands;
 
 Clone Frontend:
-`git clone FRONT_END_URL client`
+`git clone https://github.com/azharzaman1/apis-application-client.git client`
 
 Similarly, clone Backend:
-`git clone BACK_END_URL server`
+`git clone https://github.com/azharzaman1/apis-application-server.git server`
 
 #### Setup Frontend
 
