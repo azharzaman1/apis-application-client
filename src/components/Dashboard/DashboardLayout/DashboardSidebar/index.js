@@ -13,7 +13,7 @@ const DashboardSidebar = ({ open, onClose }) => {
     <div className="dashboard-sidebar-content">
       <div className="sidebar-header py-6 px-6">
         <Link to="/">
-          <Heading className="text-white opacity-80">API Archive</Heading>
+          <Heading className="!text-white opacity-80">API Archive</Heading>
         </Link>
       </div>
       <DashboardNavigation />
