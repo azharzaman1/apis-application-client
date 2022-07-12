@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
+import Link from "../../components/Generic/Link";
 
-const Home = () => {
+const NotFound = () => {
   return (
     <div className="page home-page w-full min-h-screen flex flex-col items-center justify-center">
-      <h1 className="font-heading text-3xl font-medium">Homepage Goes Here</h1>
+      <h1 className="font-heading text-3xl font-medium">
+        Hey Newton! You are lost
+      </h1>
       <div className="mt-4">
-        <Link to="dashboard">
+        <Link to="/">
           <button className="flex items-center justify-center text-gray-800 hover:text-primary transition-colors duration-150">
-            <span>Dashboard</span>
+            <span>Homepage</span>
             <span className="ml-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -30,4 +32,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default NotFound;

@@ -1,4 +1,3 @@
-import React from "react";
 import { useQuery } from "react-query";
 import Container from "../../../components/Generic/Layout/Container";
 import axios from "../../../api/axios";
@@ -6,13 +5,9 @@ import APICard from "../../../components/Dashboard/API/APICard";
 import Pagination from "../../../components/Generic/Pagination";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import Heading from "../../../components/Generic/Heading";
 
 const APIs = () => {
-  const location = useLocation();
-
-  console.log(location);
-
   const query = useSelector((state) => state.appStore.query);
   const [page, setPage] = useLocalStorage("api-application-apis-page", 1);
   const [entriesPerPage, setEntriesPerPage] = useLocalStorage(
@@ -35,14 +30,6 @@ const APIs = () => {
       return await axios.get(
         `/apis?query=${query}&page=${page}&limit=${entriesPerPage}`
       );
-    },
-    {
-      onSuccess: (res) => {
-        console.log("APIs fetch response", res);
-      },
-      onError: (err) => {
-        console.log(err.message);
-      },
     }
   );
 
@@ -69,9 +56,7 @@ const APIs = () => {
         <div className="apis-page-content pt-10 pb-10">
           <div className="page-header apis-page-header flex items-center justify-between bg-gray-100 px-4 min-h-[60px]">
             <div className="apis-page-header-left">
-              <h2 className="text-3xl font-semibold tracking-tight leading-none">
-                APIs Archive
-              </h2>
+              <Heading>APIs Archive</Heading>
             </div>
 
             {/* Only display Pagination when APIs found -atleast one */}

@@ -1,47 +1,46 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
+import Heading from "../../../Generic/Heading";
+import Link from "../../../Generic/Link";
+import Text from "../../../Generic/Text";
+import PropTypes from "prop-types";
+import Badge from "../../../Generic/Badge";
 
 const APICard = ({ data }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="card-primary flex flex-col content-card api-card px-4 py-4 bg-gray-50 hover:bg-gray-100 transition-colors duration-150 shadow border border-gray-100 min-h-[200px]">
+    <div className="card-primary flex flex-col content-card api-card px-4 py-4 bg-gray-50 hover:bg-gray-100 transition-colors duration-150 shadow border border-gray-100 min-h-[175px]">
       <div className="header flex justify-between items-center max-w-full">
-        <h2
-          className="cursor-pointer font-medium text-base lg:text-lg tracking-tight"
+        <Heading
+          type="secondary"
+          className="cursor-pointer"
           onClick={() => {
             navigate({
-              pathname: `${String(data.API)
-                .split(" ")
-                .join("-")
-                .toLowerCase()}`,
-              search: data._id,
+              pathname: data.Slug,
+              search: `?${createSearchParams({ _id: data._id })}`,
             });
           }}
         >
           {data.API}
-        </h2>
+        </Heading>
         <div className="min-w-[125px] flex items-center justify-end">
-          <span className="text-sm rounded-sm px-2 py-1 bg-primaryLight text-white shadow border border-gray-100">
-            {data.Category}
-          </span>
+          <Badge>{data.Category}</Badge>
         </div>
       </div>
       <div className="mt-4">
-        <p className="text-base text-gray-900 opacity-80">{data.Description}</p>
+        <Text>{data.Description}</Text>
       </div>
       <div className="mt-auto">
-        <a
-          className="text-gray-900 opacity-70 hover:underline underline-offset-1 hover:text-primary transition-colors duration-100 font-italic text-sm force-wrap"
-          href={data.Link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link href={data.Link} target="_blank" rel="noopener noreferrer" italic>
           {data.Link}
-        </a>
+        </Link>
       </div>
     </div>
   );
+};
+
+APICard.propTypes = {
+  data: PropTypes.object,
 };
 
 export default APICard;

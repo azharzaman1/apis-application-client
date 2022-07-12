@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage";
+import DashboardLayout from "./components/Dashboard/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 import APIs from "./pages/Dashboard/Apis";
 import API from "./pages/Dashboard/Apis/Api";
-import DashboardLayout from "./components/Dashboard/DashboardLayout";
+import NotFound from "./pages/NotFound";
 import "./App.css";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
               </Route>
             </Route>
           </Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

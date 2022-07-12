@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import React from "react";
 import { dashboardNavItems } from "../../../static/dashboard-nav";
 import { NavItem } from "./NavItem";
 

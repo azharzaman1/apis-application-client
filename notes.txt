@@ -1,10 +1,10 @@
 Additions
 Add loaders[Skeletons]
-prop-types
 
 Improvements
-loose match search query
-add ui components
+loose match search query - [DONE]
+add ui components - [DONE]
+add search params - [DONE]
 improve search input
 
 Fixes

@@ -1,6 +1,6 @@
 import { Drawer, useMediaQuery } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
+import Heading from "../../../Generic/Heading";
 import DashboardNavigation from "../DashboardNavigation";
 
 const DashboardSidebar = ({ open, onClose }) => {
@@ -13,7 +13,7 @@ const DashboardSidebar = ({ open, onClose }) => {
     <div className="dashboard-sidebar-content">
       <div className="sidebar-header py-6 px-6">
         <Link to="/">
-          <h3 className="font-semibold text-xl opacity-80">API Archive</h3>
+          <Heading className="text-white opacity-80">API Archive</Heading>
         </Link>
       </div>
       <DashboardNavigation />

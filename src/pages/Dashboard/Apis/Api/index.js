@@ -1,33 +1,22 @@
-import React from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "../../../../api/axios";
 import Container from "../../../../components/Generic/Layout/Container";
+import Badge from "../../../../components/Generic/Badge";
+import Heading from "../../../../components/Generic/Heading";
+import Text from "../../../../components/Generic/Text";
+import Link from "../../../../components/Generic/Link";
 
 const API = () => {
-  const params = useParams();
-  const location = useLocation();
-
-  const ID = String(location.search).split("").slice(1).join("");
-  console.log(ID);
+  const [searchParams] = useSearchParams();
+  const _id = searchParams.get("_id");
   const {
     data: api,
     isLoading: loadingAPI,
     error,
-  } = useQuery(
-    ["fetch-api-by-id", ID],
-    async () => {
-      return await axios.get(`/apis/${ID}`);
-    },
-    {
-      onSuccess: (res) => {
-        console.log("API fetch response", res);
-      },
-      onError: (err) => {
-        console.log("API fetch error", err);
-      },
-    }
-  );
+  } = useQuery(["fetch-api-by-id", _id], async () => {
+    return await axios.get(`/apis/${_id}`);
+  });
 
   if (loadingAPI) {
     return <div>Loading ....</div>;
@@ -46,24 +35,20 @@ const API = () => {
       <Container>
         <div className="api-page-content mt-8">
           <div className="flex items-center">
-            <h2 className="text-2xl font-semibold tracking-tight leading-none">
-              {api.data.API}
-            </h2>
-            <span className="text-sm rounded-sm px-2 py-1 bg-primaryLight text-white shadow border border-gray-100 ml-5">
-              {api.data.Category}
-            </span>
+            <Heading>{api.data.API}</Heading>
+            <Badge className="ml-4">{api.data.Category}</Badge>
           </div>
 
           <div className="api-body mt-2">
-            <a
-              className="text-gray-900 opacity-70 hover:underline underline-offset-1 hover:text-primary transition-colors duration-100 font-italic text-base"
+            <Link
+              italic
               href={api.data.Link}
               target="_blank"
               rel="noopener noreferrer"
             >
               {api.data.Link}
-            </a>
-            <p className="mt-2">{api.data.Description}</p>
+            </Link>
+            <Text className="mt-4 opacity-90">{api.data.Description}</Text>
           </div>
         </div>
       </Container>
