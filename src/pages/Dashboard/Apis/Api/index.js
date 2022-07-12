@@ -46,16 +46,21 @@ const API = () => {
       <Container>
         <div className="api-page-content mt-8">
           <div className="flex items-center">
-            <h2 className="text-3xl font-semibold tracking-tight leading-none">
+            <h2 className="text-2xl font-semibold tracking-tight leading-none">
               {api.data.API}
             </h2>
-            <span className="rounded-sm bg-primary text-white shadow border border-gray-100 px-4 py-1 ml-5">
+            <span className="text-sm rounded-sm px-2 py-1 bg-primaryLight text-white shadow border border-gray-100 ml-5">
               {api.data.Category}
             </span>
           </div>
 
-          <div className="api-body mt-4">
-            <a href={api.data.Link} target="_blank" rel="noopener noreferrer">
+          <div className="api-body mt-2">
+            <a
+              className="text-gray-900 opacity-70 hover:underline underline-offset-1 hover:text-primary transition-colors duration-100 font-italic text-base"
+              href={api.data.Link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {api.data.Link}
             </a>
             <p className="mt-2">{api.data.Description}</p>
