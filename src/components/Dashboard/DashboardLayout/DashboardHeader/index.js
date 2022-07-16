@@ -34,7 +34,7 @@ const DashboardHeader = () => {
             <input
               type="search"
               value={query}
-              placeholder="Search ..."
+              placeholder="Search e.g Pet"
               id="dashboard-header-search"
               name="dashboard-header-search"
               onChange={handleInputChange}

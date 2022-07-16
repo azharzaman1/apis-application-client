@@ -40,6 +40,9 @@ const APIs = () => {
     {
       onSuccess: (res) => {
         console.log("APIs fetch response [with pagination]", res);
+        if (res.status === 200 && query) {
+          setPage(1);
+        }
       },
       onError: (err) => {
         console.log(err.message);
